@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private EditText editText;
     private ListView listView;
-    private ArrayList<String> entries;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Movie> entries;
+    private ArrayAdapter<Movie> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +28,21 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText);
         listView = (ListView) findViewById(R.id.listView);
 
-        entries = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this, R.layout.list_element, R.id.itemName, entries);
+        //entries = new ArrayList<String>();
+        //adapter = new ArrayAdapter<String>(this, R.layout.list_element, R.id.itemName, entries);
+
+        entries = MoviesModel.getInstance().getLista();
+        adapter = new MovieListAdapter(this, R.layout.list_element, entries);
 
         listView.setAdapter(adapter);
 
-        button.setOnClickListener(new View.OnClickListener(){
+        /*button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 entries.add(0, editText.getText().toString());
                 adapter.notifyDataSetChanged();
                 editText.setText("");
             }
-        });
+        });*/
     }
 }

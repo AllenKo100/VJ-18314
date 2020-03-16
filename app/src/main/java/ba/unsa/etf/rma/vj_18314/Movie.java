@@ -58,4 +58,8 @@ public class Movie {
     public void setOverview(String overview) {
         this.overview = overview;
     }
+
+    public String toString() {
+        return this.title + " " + this.genre;
+    }
 }
