@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -33,13 +34,16 @@ public class MovieListAdapter extends ArrayAdapter<Movie> {
         }
         Movie movieInstance = getItem(position);
 
-        EditText editText2 = (EditText)newView.findViewById(R.id.editText2);
-        EditText editText3 = (EditText)newView.findViewById(R.id.editText3);
-
+        TextView editText2 = (TextView)newView.findViewById(R.id.editText2);
+        TextView editText3 = (TextView)newView.findViewById(R.id.editText3);
         ImageView icon = (ImageView)newView.findViewById(R.id.icon);
 
         editText2.setText(movieInstance.getTitle());
         editText3.setText(movieInstance.getGenre());
+
+        if(movieInstance.getGenre().equals("Action")) icon.setImageResource(R.drawable.action);
+        else if(movieInstance.getGenre().equals("Drama")) icon.setImageResource(R.drawable.drama);
+        else if(movieInstance.getGenre().equals("Crime")) icon.setImageResource(R.drawable.crime);
 
         return newView;
     }
